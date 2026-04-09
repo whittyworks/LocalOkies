@@ -11,1024 +11,421 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --parchment:      #F3E4C4;
-      --parchment-dark: #E0CFA0;
-      --cream:          #FAF4E8;
-      --dark:           #1D6878;
-      --dark-mid:       #8A1810;
-      --rust:           #C03808;
-      --rust-light:     #D04818;
-      --amber:          #F0A010;
-      --amber-light:    #F5C020;
-      --rose:           #D45A10;
-      --sage:           #4E6840;
-      --sage-light:     #6A8A58;
-      --text:           #3A2818;
-      --text-muted:     #7A6050;
-      --border:         rgba(29, 104, 120, 0.2);
-      --border-strong:  rgba(29, 104, 120, 0.4);
+      --parchment:     #F3E4C4;
+      --parchment-dk:  #E0CFA0;
+      --cream:         #FAF4E8;
+      --teal:          #1D6878;
+      --teal-dark:     #155260;
+      --crimson:       #8A1810;
+      --red:           #C03808;
+      --red-light:     #D04818;
+      --amber:         #F0A010;
+      --amber-light:   #F5C020;
+      --orange:        #D45A10;
+      --sage:          #4E6840;
+      --text:          #3A2818;
+      --text-muted:    #7A6050;
+      --border:        rgba(29,104,120,0.2);
+      --border-strong: rgba(29,104,120,0.4);
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'Lora', Georgia, serif; background: var(--parchment); color: var(--text); min-height: 100vh; }
 
-    body {
-      font-family: 'Lora', Georgia, serif;
-      background: var(--parchment);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    /* ─── NAV ───────────────────────────────── */
     .nav {
-      background: var(--dark);
-      border-bottom: 3px solid var(--amber);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      gap: 1rem;
+      background: var(--teal); border-bottom: 3px solid var(--amber);
+      padding: 0 2rem; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 200; gap: 1rem;
     }
+    .nav-brand { display: flex; flex-direction: column; padding: 0.85rem 0; cursor: pointer; }
+    .nav-brand-main { font-family: 'Rye', serif; font-size: 1.45rem; color: var(--amber); letter-spacing: 0.04em; line-height: 1; text-shadow: 1px 2px 0 rgba(0,0,0,0.4); }
+    .nav-brand-sub { font-family: 'Source Sans 3', sans-serif; font-size: 0.6rem; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(243,228,196,0.45); margin-top: 2px; }
+    .nav-links { display: flex; gap: 0.25rem; }
+    .nav-btn { background: none; border: 1px solid transparent; color: rgba(243,228,196,0.6); font-family: 'Source Sans 3', sans-serif; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 0.9rem; cursor: pointer; transition: color 0.18s, border-color 0.18s; border-radius: 2px; }
+    .nav-btn:hover { color: var(--amber-light); border-color: rgba(240,160,16,0.4); }
+    .nav-btn.active { color: var(--amber); border-color: rgba(240,160,16,0.6); }
 
-    .nav-brand {
-      display: flex;
-      flex-direction: column;
-      padding: 0.85rem 0;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .nav-brand-main {
-      font-family: 'Rye', serif;
-      font-size: 1.45rem;
-      color: var(--amber);
-      letter-spacing: 0.04em;
-      line-height: 1;
-      text-shadow: 1px 2px 0 rgba(0,0,0,0.5);
-    }
-
-    .nav-brand-sub {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: rgba(243,232,208,0.45);
-      margin-top: 2px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 0.25rem;
-    }
-
-    .nav-btn {
-      background: none;
-      border: 1px solid transparent;
-      color: rgba(243,232,208,0.6);
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 0.5rem 0.9rem;
-      cursor: pointer;
-      transition: color 0.18s, border-color 0.18s;
-      border-radius: 2px;
-    }
-
-    .nav-btn:hover {
-      color: var(--amber-light);
-      border-color: rgba(196,124,40,0.4);
-    }
-
-    .nav-btn.active {
-      color: var(--amber);
-      border-color: var(--rust);
-    }
-
-    /* ─── HERO ──────────────────────────────── */
-    .hero {
-      background: var(--dark);
-      padding: 5rem 2rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-eyebrow {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 300;
-      letter-spacing: 0.38em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1.25rem;
-      opacity: 0.85;
-    }
-
-    .hero-title {
-      font-family: 'Rye', serif;
-      font-size: clamp(3.2rem, 9vw, 6.5rem);
-      color: var(--parchment);
-      line-height: 0.95;
-      letter-spacing: 0.02em;
-      text-shadow: 3px 4px 0 rgba(0,0,0,0.45);
-      margin-bottom: 0.25rem;
-    }
-
+    .hero { background: var(--teal); padding: 5rem 2rem 0; text-align: center; overflow: hidden; }
+    .hero-eyebrow { font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.38em; text-transform: uppercase; color: var(--amber); margin-bottom: 1.25rem; opacity: 0.85; }
+    .hero-title { font-family: 'Rye', serif; font-size: clamp(3.2rem,9vw,6.5rem); color: var(--parchment); line-height: 0.95; text-shadow: 3px 4px 0 rgba(0,0,0,0.35); margin-bottom: 0.25rem; }
     .hero-title-accent { color: var(--amber); }
+    .hero-tagline { font-family: 'Lora', serif; font-style: italic; font-size: 1.1rem; color: rgba(243,228,196,0.7); margin: 0 auto 2.5rem; max-width: 440px; line-height: 1.6; }
+    .cta-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 3.5rem; }
+    .btn { display: inline-block; font-family: 'Source Sans 3', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.95rem 2.6rem; border: none; cursor: pointer; position: relative; transition: background 0.2s, transform 0.15s; }
+    .btn::after { content: ''; position: absolute; inset: -4px; border: 1px solid rgba(192,56,8,0.35); pointer-events: none; }
+    .btn-primary { background: var(--red); color: var(--parchment); }
+    .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+    .btn-ghost { background: transparent; color: rgba(243,228,196,0.8); border: 1px solid rgba(243,228,196,0.35); }
+    .btn-ghost::after { display: none; }
+    .btn-ghost:hover { background: rgba(243,228,196,0.08); transform: translateY(-2px); }
+    .hero-land { width: 100%; display: block; height: 80px; }
 
-    .hero-tagline {
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      color: rgba(243,232,208,0.65);
-      margin-bottom: 2.5rem;
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
-    }
+    .section { max-width: 1120px; margin: 0 auto; padding: 4rem 2rem; }
+    .section-head { text-align: center; margin-bottom: 3rem; }
+    .section-title { font-family: 'Rye', serif; font-size: 2rem; color: var(--red); margin-bottom: 0.5rem; }
+    .section-sub { font-style: italic; color: var(--text-muted); font-size: 0.95rem; }
 
-    .hero-cta {
-      display: inline-block;
-      background: var(--rust);
-      color: var(--parchment);
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      padding: 0.95rem 2.8rem;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      transition: background 0.2s, transform 0.15s;
-      margin-bottom: 3.5rem;
-    }
+    .divider { display: flex; align-items: center; gap: 1.25rem; margin: 0 0 2.5rem; }
+    .divider-line { flex: 1; height: 1px; background: var(--border); }
+    .divider-mark { font-family: 'Rye', serif; font-size: 0.7rem; color: var(--red); letter-spacing: 0.3em; opacity: 0.6; }
 
-    .hero-cta::after {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border: 1px solid rgba(172,82,50,0.45);
-      pointer-events: none;
-    }
+    .benefit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.5rem; }
+    .benefit-card { background: var(--cream); border: 1px solid var(--border); padding: 2rem 1.75rem 1.75rem; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+    .benefit-card::before { content: ''; position: absolute; inset: 5px; border: 1px solid var(--border); pointer-events: none; opacity: 0.4; }
+    .benefit-card:hover { transform: translateY(-3px); box-shadow: 4px 8px 24px rgba(29,104,120,0.12); }
+    .benefit-num { font-family: 'Rye', serif; font-size: 2.5rem; color: var(--amber); line-height: 1; margin-bottom: 0.75rem; opacity: 0.7; }
+    .benefit-title { font-family: 'Rye', serif; font-size: 1rem; color: var(--crimson); margin-bottom: 0.75rem; }
+    .benefit-desc { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); font-style: italic; }
 
-    .hero-cta:hover {
-      background: var(--rust-light);
-      transform: translateY(-2px);
-    }
+    .founding-band { background: var(--crimson); padding: 4.5rem 2rem; text-align: center; }
+    .founding-inner { max-width: 640px; margin: 0 auto; }
+    .founding-badge { display: inline-block; border: 1px solid rgba(240,160,16,0.5); color: var(--amber); font-family: 'Source Sans 3', sans-serif; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; padding: 0.5rem 1.5rem; margin-bottom: 1.5rem; }
+    .founding-title { font-family: 'Rye', serif; font-size: 2rem; color: var(--amber); margin-bottom: 1rem; }
+    .founding-text { font-size: 1rem; line-height: 1.85; color: rgba(243,228,196,0.75); font-style: italic; margin-bottom: 2rem; }
+    .founding-text strong { color: var(--parchment); font-style: normal; }
 
-    .hero-land {
-      width: 100%;
-      display: block;
-      height: 80px;
-    }
-
-    /* ─── DIVIDERS ──────────────────────────── */
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      margin: 0 0 2.5rem;
-    }
-
-    .divider-line {
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .divider-mark {
-      font-family: 'Rye', serif;
-      font-size: 0.7rem;
-      color: var(--rust);
-      letter-spacing: 0.3em;
-      opacity: 0.6;
-    }
-
-    /* ─── SECTIONS ──────────────────────────── */
-    .section {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 4rem 2rem;
-    }
-
-    .section-head {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-title {
-      font-family: 'Rye', serif;
-      font-size: 2rem;
-      color: var(--rust);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-sub {
-      font-style: italic;
-      color: var(--text-muted);
-      font-size: 0.95rem;
-    }
-
-    /* ─── BUSINESS CARD ─────────────────────── */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      padding: 1.75rem 1.75rem 1.5rem;
-      position: relative;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: default;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 5px;
-      border: 1px solid var(--border);
-      pointer-events: none;
-      opacity: 0.45;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 4px 8px 24px rgba(30,16,8,0.14);
-    }
-
-    .card-badge {
-      position: absolute;
-      top: -1px;
-      right: 1.25rem;
-      background: var(--rust);
-      color: var(--parchment);
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-    }
-
-    .card-icon {
-      font-size: 1.75rem;
-      margin-bottom: 0.75rem;
-      line-height: 1;
-    }
-
-    .card-cat {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: 0.45rem;
-    }
-
-    .card-name {
-      font-family: 'Rye', serif;
-      font-size: 1.1rem;
-      color: var(--dark-mid);
-      line-height: 1.3;
-      margin-bottom: 0.8rem;
-    }
-
-    .card-desc {
-      font-size: 0.88rem;
-      line-height: 1.7;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    .card-footer {
-      margin-top: 1.25rem;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.72rem;
-      color: var(--text-muted);
-    }
-
-    .card-footer-pin {
-      width: 8px;
-      height: 8px;
-      border-radius: 50% 50% 50% 0;
-      background: var(--rust);
-      transform: rotate(-45deg);
-      flex-shrink: 0;
-      opacity: 0.6;
-    }
-
-    /* ─── ABOUT BAND ────────────────────────── */
-    .about-band {
-      background: var(--dark-mid);
-      padding: 4.5rem 2rem;
-    }
-
-    .about-inner {
-      max-width: 680px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .about-title {
-      font-family: 'Rye', serif;
-      font-size: 1.8rem;
-      color: var(--amber);
-      margin-bottom: 1.25rem;
-    }
-
-    .about-text {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: rgba(243,232,208,0.7);
-      font-style: italic;
-    }
-
-    .about-text strong {
-      color: var(--parchment);
-      font-style: normal;
-    }
-
-    /* ─── STATS ROW ─────────────────────────── */
-    .stats-row {
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin-top: 2.5rem;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-num {
-      font-family: 'Rye', serif;
-      font-size: 2rem;
-      color: var(--amber);
-      display: block;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(243,232,208,0.4);
-      margin-top: 0.4rem;
-    }
-
-    /* ─── DIRECTORY PAGE ────────────────────── */
-    .dir-header {
-      background: var(--dark-mid);
-      padding: 3.5rem 2rem 2.5rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dir-title {
-      font-family: 'Rye', serif;
-      font-size: clamp(2rem, 6vw, 4rem);
-      color: var(--parchment);
-      text-shadow: 2px 3px 0 rgba(0,0,0,0.4);
-      margin-bottom: 0.4rem;
-    }
-
-    .dir-sub {
-      font-style: italic;
-      color: rgba(243,232,208,0.55);
-      font-size: 0.9rem;
-    }
-
-    .dir-controls {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 2rem 2rem 0.5rem;
-    }
-
-    .search-wrap {
-      position: relative;
-      margin-bottom: 1.25rem;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 0.85rem 1.25rem 0.85rem 2.75rem;
-      background: var(--cream);
-      border: 1px solid var(--border-strong);
-      font-family: 'Lora', serif;
-      font-style: italic;
-      font-size: 0.95rem;
-      color: var(--text);
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .search-input::placeholder { color: var(--text-muted); }
-    .search-input:focus { border-color: var(--rust); }
-
-    .search-icon {
-      position: absolute;
-      left: 0.9rem;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-    }
-
-    .search-icon svg { width: 16px; height: 16px; fill: none; stroke: var(--text-muted); stroke-width: 2; stroke-linecap: round; }
-
-    .cat-filters {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .cat-btn {
-      background: var(--cream);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.42rem 1rem;
-      cursor: pointer;
-      transition: all 0.18s;
-    }
-
-    .cat-btn:hover {
-      border-color: var(--rust);
-      color: var(--rust);
-    }
-
-    .cat-btn.on {
-      background: var(--rust);
-      border-color: var(--rust);
-      color: var(--parchment);
-    }
-
-    .dir-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 2rem 2rem 4rem;
-    }
-
-    .dir-empty {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 5rem 2rem;
-      font-style: italic;
-      color: var(--text-muted);
-    }
-
-    .dir-count {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      letter-spacing: 0.05em;
-      max-width: 1120px;
-      margin: 1rem 2rem 0;
-      padding: 0 0.25rem;
-    }
-
-    /* ─── FOOTER ────────────────────────────── */
-    .footer {
-      background: var(--dark);
-      border-top: 3px solid var(--amber);
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-
-    .footer-name {
-      font-family: 'Rye', serif;
-      font-size: 1.25rem;
-      color: var(--amber);
-      margin-bottom: 0.4rem;
-    }
-
-    .footer-sub {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      color: rgba(243,228,196,0.35);
-    }
-
-    /* ─── OKLAHOMA STRIP ────────────────────── */
-    .ok-strip {
-      background: var(--rose);
-      padding: 3rem 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .ok-strip-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .ok-eyebrow {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.68rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--parchment);
-      opacity: 0.75;
-      margin-bottom: 2.25rem;
-    }
-
-    .ok-icons {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      gap: 3.5rem;
-      flex-wrap: wrap;
-    }
-
-    .ok-icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      opacity: 0.65;
-      transition: opacity 0.2s;
-    }
-
+    .ok-strip { background: var(--orange); padding: 2.75rem 2rem; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .ok-strip-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+    .ok-eyebrow { font-family: 'Source Sans 3', sans-serif; font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(243,228,196,0.75); margin-bottom: 2rem; }
+    .ok-icons { display: flex; justify-content: center; align-items: flex-end; gap: 3rem; flex-wrap: wrap; }
+    .ok-icon { display: flex; flex-direction: column; align-items: center; gap: 0.65rem; opacity: 0.72; transition: opacity 0.2s; }
     .ok-icon:hover { opacity: 1; }
+    .ok-icon-label { font-family: 'Source Sans 3', sans-serif; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(243,228,196,0.55); white-space: nowrap; }
 
-    .ok-icon svg { display: block; }
+    .about-band { background: var(--teal-dark); padding: 4.5rem 2rem; }
+    .about-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+    .about-title { font-family: 'Rye', serif; font-size: 1.8rem; color: var(--amber); margin-bottom: 1.25rem; }
+    .about-text { font-size: 1rem; line-height: 1.85; color: rgba(243,228,196,0.72); font-style: italic; }
+    .about-text strong { color: var(--parchment); font-style: normal; }
 
-    .ok-icon-label {
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(243,228,196,0.7);
-      white-space: nowrap;
-    }
+    .soon-wrap { min-height: 72vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 2rem; }
+    .soon-title { font-family: 'Rye', serif; font-size: clamp(2.5rem,7vw,5rem); color: var(--red); margin-bottom: 0.5rem; }
+    .soon-sub { font-style: italic; color: var(--text-muted); font-size: 1rem; max-width: 460px; line-height: 1.7; margin-bottom: 2.5rem; }
+    .soon-count { display: flex; gap: 3rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
+    .soon-stat { text-align: center; }
+    .soon-num { font-family: 'Rye', serif; font-size: 2.5rem; color: var(--teal); line-height: 1; display: block; }
+    .soon-label { font-family: 'Source Sans 3', sans-serif; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; display: block; }
+    .bar-wrap { width: 100%; max-width: 420px; margin-bottom: 0.75rem; }
+    .bar-track { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .bar-fill { height: 100%; background: var(--teal); border-radius: 3px; }
+    .bar-label { font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.4rem; font-style: italic; }
 
-    /* ─── RESPONSIVE ────────────────────────── */
+    .join-header { background: var(--crimson); padding: 3.5rem 2rem 2.5rem; text-align: center; }
+    .join-title { font-family: 'Rye', serif; font-size: clamp(2rem,6vw,3.5rem); color: var(--parchment); text-shadow: 2px 3px 0 rgba(0,0,0,0.3); margin-bottom: 0.4rem; }
+    .join-sub { font-style: italic; color: rgba(243,228,196,0.6); font-size: 0.92rem; }
+
+    .form-wrap { max-width: 680px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+    .field { margin-bottom: 1.5rem; }
+    .field-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.5rem; }
+    .label { display: block; font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.5rem; }
+    .label span { color: var(--red); }
+    .input, .fselect, .textarea { width: 100%; padding: 0.8rem 1rem; background: var(--cream); border: 1px solid var(--border-strong); font-family: 'Lora', serif; font-size: 0.9rem; color: var(--text); outline: none; transition: border-color 0.2s; appearance: none; }
+    .input:focus, .fselect:focus, .textarea:focus { border-color: var(--teal); }
+    .input::placeholder, .textarea::placeholder { color: var(--text-muted); font-style: italic; }
+    .textarea { resize: vertical; min-height: 110px; }
+    .fselect { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A6050' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+    .check-group { display: flex; flex-direction: column; gap: 0.6rem; }
+    .check { display: flex; align-items: center; gap: 0.65rem; font-size: 0.88rem; color: var(--text-muted); cursor: pointer; }
+    .check input { width: 16px; height: 16px; accent-color: var(--teal); cursor: pointer; flex-shrink: 0; }
+    .f-divider { height: 1px; background: var(--border); margin: 2rem 0; }
+    .form-note { font-size: 0.8rem; font-style: italic; color: var(--text-muted); margin-top: 0.75rem; line-height: 1.6; }
+    .success-box { background: var(--cream); border: 1px solid var(--border-strong); padding: 3rem 2rem; text-align: center; position: relative; }
+    .success-box::before { content: ''; position: absolute; inset: 6px; border: 1px solid var(--border); pointer-events: none; opacity: 0.4; }
+    .success-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .success-title { font-family: 'Rye', serif; font-size: 1.4rem; color: var(--teal); margin-bottom: 0.75rem; }
+    .success-text { font-style: italic; color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; }
+
+    .footer { background: var(--teal); border-top: 3px solid var(--amber); padding: 2.5rem 2rem; text-align: center; }
+    .footer-name { font-family: 'Rye', serif; font-size: 1.25rem; color: var(--amber); margin-bottom: 0.4rem; }
+    .footer-sub { font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(243,228,196,0.32); }
+
     @media (max-width: 600px) {
       .nav { padding: 0 1rem; }
       .section { padding: 3rem 1.25rem; }
-      .dir-controls { padding: 1.5rem 1.25rem 0.5rem; }
-      .dir-grid { padding: 1.5rem 1.25rem 3rem; }
-      .stats-row { gap: 2rem; }
+      .form-wrap { padding: 2rem 1.25rem 3rem; }
+      .field-2 { grid-template-columns: 1fr; }
+      .ok-icons { gap: 2rem; }
     }
   </style>
 </head>
 <body>
-
 <div id="root"></div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
-
 <script type="text/babel">
-const { useState } = React;
+const { useState, useEffect } = React;
 
-/* ─────────────────────────────────────────────
-   DATA — replace or expand as needed
-───────────────────────────────────────────── */
-const BUSINESSES = [
-  {
-    id: 1,
-    name: "Cattlemen's Steakhouse",
-    category: "Food & Drink",
-    description: "Oklahoma's oldest continuously operating restaurant, hand-cutting steaks for cowboys and city folk since 1910.",
-    neighborhood: "Stockyards City",
-    icon: "🥩",
-    featured: true,
-  },
-  {
-    id: 2,
-    name: "Dust Bowl Brewing Co.",
-    category: "Food & Drink",
-    description: "Craft ales brewed with Oklahoma grain and a whole lot of stubborn Sooner spirit.",
-    neighborhood: "Midtown",
-    icon: "🍺",
-    featured: true,
-  },
-  {
-    id: 3,
-    name: "Prairie Roots Farm",
-    category: "Farm & Garden",
-    description: "Seasonal vegetables, heritage grains, and free-range eggs grown on 40 acres just outside the city.",
-    neighborhood: "Edmond",
-    icon: "🌾",
-    featured: true,
-  },
-  {
-    id: 4,
-    name: "Iron Horse Leather",
-    category: "Retail",
-    description: "Custom saddles, belts, and bags hand-tooled by a third-generation Oklahoma leather worker.",
-    neighborhood: "Stockyards City",
-    icon: "🛠️",
-    featured: false,
-  },
-  {
-    id: 5,
-    name: "Red Earth Gallery",
-    category: "Arts & Crafts",
-    description: "Oklahoma Native art, sculpture, and jewelry from artists across the Five Civilized Tribes and beyond.",
-    neighborhood: "Automobile Alley",
-    icon: "🎨",
-    featured: false,
-  },
-  {
-    id: 6,
-    name: "Scissortail Coffee",
-    category: "Food & Drink",
-    description: "Single-origin pour-overs and house-baked goods in a sun-soaked corner shop named for our state bird.",
-    neighborhood: "Plaza District",
-    icon: "☕",
-    featured: false,
-  },
-  {
-    id: 7,
-    name: "The Sooner Stitch",
-    category: "Services",
-    description: "Custom embroidery, alterations, and bespoke Western clothing. Heirloom quality, guaranteed.",
-    neighborhood: "Paseo Arts District",
-    icon: "🧵",
-    featured: false,
-  },
-  {
-    id: 8,
-    name: "Oklahoma Native Plants",
-    category: "Farm & Garden",
-    description: "Native wildflowers, grasses, and trees that actually belong in Oklahoma soil — no fighting nature required.",
-    neighborhood: "Nichols Hills",
-    icon: "🌻",
-    featured: false,
-  },
-  {
-    id: 9,
-    name: "Two Pony Saddlery",
-    category: "Retail",
-    description: "Western tack, boots, hats, and riding gear from brands that have truly earned their spurs.",
-    neighborhood: "Stockyards City",
-    icon: "🐴",
-    featured: false,
-  },
-  {
-    id: 10,
-    name: "Tallgrass Pottery",
-    category: "Arts & Crafts",
-    description: "Handthrown stoneware inspired by the prairie — earthy glazes, generous bowls, mugs built to last a lifetime.",
-    neighborhood: "Paseo Arts District",
-    icon: "🏺",
-    featured: false,
-  },
-  {
-    id: 11,
-    name: "Route 66 Auto Restore",
-    category: "Services",
-    description: "Classic car restoration with a specialty in American muscle. If it drove the Mother Road, we know it.",
-    neighborhood: "Capitol Hill",
-    icon: "🚗",
-    featured: false,
-  },
-  {
-    id: 12,
-    name: "Bricktown Spice Co.",
-    category: "Retail",
-    description: "House-blended Oklahoma rubs, smoked salts, and hot sauces. The pantry staples you didn't know you needed.",
-    neighborhood: "Bricktown",
-    icon: "🌶️",
-    featured: false,
-  },
-];
+const FOUNDING_GOAL = 20;
+const CONFIRMED_COUNT = 0;
 
-const CATEGORIES = ["All", "Food & Drink", "Arts & Crafts", "Retail", "Services", "Farm & Garden"];
-
-/* ─────────────────────────────────────────────
-   COMPONENTS
-───────────────────────────────────────────── */
-function Divider({ label }) {
-  return (
-    <div className="divider">
-      <div className="divider-line" />
-      <div className="divider-mark">{label || "✦ ✦ ✦"}</div>
-      <div className="divider-line" />
-    </div>
-  );
+function ScissortailIcon() {
+  return <svg viewBox="0 0 60 100" width="32" height="54" fill="rgba(243,228,196,0.85)"><circle cx="30" cy="11" r="8"/><ellipse cx="30" cy="27" rx="10" ry="11"/><path d="M20,22 C8,19 4,30 10,33 L22,29 Z"/><path d="M40,22 C52,19 56,30 50,33 L38,29 Z"/><path d="M23,37 L37,37 L38,51 L22,51 Z"/><path d="M22,51 C20,60 15,75 12,97 L17,98 C21,75 25,61 28,51 Z"/><path d="M38,51 C40,60 45,75 48,97 L43,98 C39,75 35,61 32,51 Z"/></svg>;
+}
+function RedbudIcon() {
+  return <svg viewBox="0 0 80 80" width="56" height="56" fill="rgba(243,228,196,0.85)"><path d="M8,75 C16,57 30,40 48,26 C60,16 67,10 74,7" stroke="rgba(243,228,196,0.85)" strokeWidth="3.5" strokeLinecap="round" fill="none"/><path d="M25,52 C19,43 13,37 7,33" stroke="rgba(243,228,196,0.85)" strokeWidth="2.5" strokeLinecap="round" fill="none"/><path d="M48,26 C44,18 39,12 36,7" stroke="rgba(243,228,196,0.85)" strokeWidth="2" strokeLinecap="round" fill="none"/><circle cx="74" cy="7" r="4.5"/><circle cx="69" cy="4" r="3.5"/><circle cx="64" cy="9" r="3.5"/><circle cx="59" cy="6" r="3"/><circle cx="36" cy="7" r="3.5"/><circle cx="31" cy="4" r="3"/><circle cx="40" cy="4" r="3"/><circle cx="7" cy="33" r="3.5"/><circle cx="4" cy="29" r="3"/><circle cx="11" cy="28" r="3"/></svg>;
+}
+function PumpJackIcon() {
+  return <svg viewBox="0 0 80 82" width="50" height="50" fill="rgba(243,228,196,0.85)"><path d="M29,78 L37,30 L43,30 L51,78 Z"/><rect x="31" y="52" width="18" height="3"/><rect x="32" y="42" width="16" height="3"/><path d="M5,34 L75,26 L75,30 L5,38 Z"/><path d="M5,38 L5,52 L13,52 L13,38 Z"/><rect x="65" y="18" width="12" height="16" rx="2"/><rect x="8" y="52" width="3" height="26"/><rect x="27" y="78" width="26" height="4"/></svg>;
+}
+function BisonIcon() {
+  return <svg viewBox="0 0 100 75" width="64" height="48" fill="rgba(243,228,196,0.85)"><ellipse cx="60" cy="48" rx="27" ry="17"/><ellipse cx="38" cy="36" rx="17" ry="19"/><ellipse cx="18" cy="49" rx="15" ry="12"/><path d="M28,42 C34,38 42,38 44,43 L44,59 L26,59 Z"/><path d="M8,56 C6,64 13,67 19,65 L22,57 Z"/><path d="M13,38 C9,30 5,27 7,24" stroke="rgba(243,228,196,0.85)" strokeWidth="3" strokeLinecap="round" fill="none"/><path d="M86,45 C94,41 95,49 91,53 L83,52 Z"/><rect x="27" y="61" width="6" height="13" rx="2"/><rect x="37" y="61" width="6" height="13" rx="2"/><rect x="61" y="62" width="6" height="11" rx="2"/><rect x="71" y="62" width="6" height="11" rx="2"/></svg>;
+}
+function WagonIcon() {
+  return <svg viewBox="0 0 100 70" width="64" height="45" fill="rgba(243,228,196,0.85)"><rect x="10" y="28" width="70" height="20" rx="2"/><path d="M10,32 C20,22 40,18 50,18 C60,18 75,22 80,32"/><circle cx="22" cy="52" r="14" fill="none" stroke="rgba(243,228,196,0.85)" strokeWidth="3"/><line x1="22" y1="38" x2="22" y2="66" stroke="rgba(243,228,196,0.85)" strokeWidth="2"/><line x1="8" y1="52" x2="36" y2="52" stroke="rgba(243,228,196,0.85)" strokeWidth="2"/><line x1="11" y1="41" x2="33" y2="63" stroke="rgba(243,228,196,0.85)" strokeWidth="1.5"/><line x1="33" y1="41" x2="11" y2="63" stroke="rgba(243,228,196,0.85)" strokeWidth="1.5"/><circle cx="72" cy="52" r="14" fill="none" stroke="rgba(243,228,196,0.85)" strokeWidth="3"/><line x1="72" y1="38" x2="72" y2="66" stroke="rgba(243,228,196,0.85)" strokeWidth="2"/><line x1="58" y1="52" x2="86" y2="52" stroke="rgba(243,228,196,0.85)" strokeWidth="2"/><line x1="61" y1="41" x2="83" y2="63" stroke="rgba(243,228,196,0.85)" strokeWidth="1.5"/><line x1="83" y1="41" x2="61" y2="63" stroke="rgba(243,228,196,0.85)" strokeWidth="1.5"/><line x1="0" y1="40" x2="14" y2="38" stroke="rgba(243,228,196,0.85)" strokeWidth="2.5" strokeLinecap="round"/></svg>;
 }
 
-function BusinessCard({ biz, featured }) {
+function OkStrip() {
   return (
-    <div className="card">
-      {featured && <span className="card-badge">Featured</span>}
-      <div className="card-icon">{biz.icon}</div>
-      <div className="card-cat">{biz.category}</div>
-      <div className="card-name">{biz.name}</div>
-      <div className="card-desc">{biz.description}</div>
-      <div className="card-footer">
-        <div className="card-footer-pin" />
-        {biz.neighborhood}
+    <div className="ok-strip">
+      <div className="ok-strip-inner">
+        <p className="ok-eyebrow">Oklahoma Proud</p>
+        <div className="ok-icons">
+          <div className="ok-icon"><ScissortailIcon /><span className="ok-icon-label">State Bird</span></div>
+          <div className="ok-icon"><RedbudIcon /><span className="ok-icon-label">Eastern Redbud</span></div>
+          <div className="ok-icon"><PumpJackIcon /><span className="ok-icon-label">Oil Country</span></div>
+          <div className="ok-icon"><BisonIcon /><span className="ok-icon-label">American Bison</span></div>
+          <div className="ok-icon"><WagonIcon /><span className="ok-icon-label">Land Run</span></div>
+        </div>
       </div>
     </div>
   );
 }
 
-/* Prairie horizon SVG at the bottom of the hero */
-/* Prairie horizon with oil pump jack silhouettes */
 function PrairieHorizon() {
   return (
-    <svg className="hero-land" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className="hero-land" viewBox="0 0 1440 80" preserveAspectRatio="none">
       <path d="M0,50 C120,35 240,55 360,42 C480,29 600,48 720,38 C840,28 960,46 1080,36 C1200,26 1320,44 1440,34 L1440,80 L0,80 Z" fill="#F3E4C4" opacity="0.2"/>
       <path d="M0,62 C180,50 360,65 540,56 C720,47 900,62 1080,54 C1260,46 1380,58 1440,55 L1440,80 L0,80 Z" fill="#F3E4C4" opacity="0.5"/>
       <path d="M0,72 C240,66 480,74 720,70 C960,66 1200,73 1440,69 L1440,80 L0,80 Z" fill="#F3E4C4"/>
-      {/* Oil pump jacks along the horizon */}
-      {[200, 560, 920, 1260].map((x, i) => (
-        <g key={i} transform={`translate(${x}, ${i % 2 === 0 ? 20 : 14})`} opacity="0.3" fill="#0E0808">
-          <path d="M9,36 L13,14 L17,14 L21,36 Z"/>
-          <rect x="10" y="24" width="11" height="1.5"/>
-          <rect x="11" y="20" width="9" height="1.5"/>
-          <path d="M1,16 L29,12 L29,15 L1,19 Z"/>
-          <path d="M1,19 L1,27 L5,27 L5,19 Z"/>
-          <rect x="25" y="8" width="6" height="8" rx="1"/>
-          <rect x="2" y="27" width="2" height="9"/>
-          <rect x="8" y="36" width="14" height="2"/>
+      {[200,560,920,1260].map((x,i) => (
+        <g key={i} transform={`translate(${x},${i%2===0?20:14})`} opacity="0.3" fill="#0E0808">
+          <path d="M8,45 L12,18 L16,18 L20,45 Z"/>
+          <rect x="9" y="31" width="11" height="2"/>
+          <path d="M2,20 L27,16 L27,19 L2,23 Z"/>
+          <path d="M2,23 L2,31 L6,31 L6,23 Z"/>
+          <rect x="22" y="11" width="7" height="9" rx="1"/>
+          <rect x="3" y="31" width="2" height="14"/>
+          <rect x="8" y="45" width="14" height="2"/>
         </g>
       ))}
     </svg>
   );
 }
 
-/* ── Oklahoma State Symbol SVG Icons ── */
-function ScissortailIcon() {
+function HomePage({ onJoin, onDirectory }) {
   return (
-    <svg viewBox="0 0 60 100" width="34" height="57" fill="var(--parchment)" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="30" cy="11" r="8"/>
-      <ellipse cx="30" cy="27" rx="10" ry="11"/>
-      <path d="M20,22 C8,19 4,30 10,33 L22,29 Z"/>
-      <path d="M40,22 C52,19 56,30 50,33 L38,29 Z"/>
-      <path d="M23,37 L37,37 L38,51 L22,51 Z"/>
-      <path d="M22,51 C20,60 15,75 12,97 L17,98 C21,75 25,61 28,51 Z"/>
-      <path d="M38,51 C40,60 45,75 48,97 L43,98 C39,75 35,61 32,51 Z"/>
-    </svg>
-  );
-}
+    <>
+      <section className="hero">
+        <p className="hero-eyebrow">Oklahoma City, Oklahoma</p>
+        <h1 className="hero-title">Local<span className="hero-title-accent">Okies</span></h1>
+        <p className="hero-tagline">A new home for OKC's small businesses — launching soon</p>
+        <div className="cta-row">
+          <button className="btn btn-primary" onClick={onJoin}>Get Your Business Listed</button>
+          <button className="btn btn-ghost" onClick={onDirectory}>See What's Coming</button>
+        </div>
+        <PrairieHorizon />
+      </section>
 
-function RedbudIcon() {
-  return (
-    <svg viewBox="0 0 80 80" width="60" height="60" fill="var(--parchment)" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8,75 C16,57 30,40 48,26 C60,16 67,10 74,7" stroke="var(--parchment)" strokeWidth="3.5" strokeLinecap="round" fill="none"/>
-      <path d="M25,52 C19,43 13,37 7,33" stroke="var(--parchment)" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-      <path d="M48,26 C44,18 39,12 36,7" stroke="var(--parchment)" strokeWidth="2" strokeLinecap="round" fill="none"/>
-      <circle cx="74" cy="7" r="4.5"/><circle cx="69" cy="4" r="3.5"/><circle cx="64" cy="9" r="3.5"/>
-      <circle cx="59" cy="6" r="3"/><circle cx="36" cy="7" r="3.5"/><circle cx="31" cy="4" r="3"/>
-      <circle cx="40" cy="4" r="3"/><circle cx="7" cy="33" r="3.5"/><circle cx="4" cy="29" r="3"/>
-      <circle cx="11" cy="28" r="3"/>
-    </svg>
-  );
-}
+      <section className="section">
+        <div className="section-head">
+          <h2 className="section-title">Why LocalOkies?</h2>
+          <p className="section-sub">Built for business owners who've earned their place in this city</p>
+        </div>
+        <div className="benefit-grid">
+          {[
+            ["01","Your Own Profile","A dedicated listing page with your story, hours, location, and everything a customer needs to find and choose you."],
+            ["02","OKC Shoppers First","LocalOkies is built for people who are already looking to shop local. Every visitor wants to support a business like yours."],
+            ["03","Community, Not Algorithm","No bidding for placement. No ads pushing you down. A clean, beautiful directory your neighbors can actually use."],
+            ["04","Founding Member Status","The first businesses to join shape what LocalOkies becomes. Founding members get permanent recognition and first access to new features."],
+            ["05","Free to Start","Basic listings are free. We're building this alongside you — not charging you before we've earned it."],
+            ["06","Made in Oklahoma","LocalOkies is run by OKC locals. We're not a national directory. We're your neighbors, and we're proud of this city."],
+          ].map(([num,title,desc]) => (
+            <div className="benefit-card" key={num}>
+              <div className="benefit-num">{num}</div>
+              <div className="benefit-title">{title}</div>
+              <div className="benefit-desc">{desc}</div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-function PumpJackIcon() {
-  return (
-    <svg viewBox="0 0 80 82" width="54" height="54" fill="var(--parchment)" xmlns="http://www.w3.org/2000/svg">
-      <path d="M29,78 L37,30 L43,30 L51,78 Z"/>
-      <rect x="31" y="52" width="18" height="3"/>
-      <rect x="32" y="42" width="16" height="3"/>
-      <path d="M5,34 L75,26 L75,30 L5,38 Z"/>
-      <path d="M5,38 L5,52 L13,52 L13,38 Z"/>
-      <rect x="65" y="18" width="12" height="16" rx="2"/>
-      <rect x="8" y="52" width="3" height="26"/>
-      <rect x="27" y="78" width="26" height="4"/>
-    </svg>
-  );
-}
+      <OkStrip />
 
-function BisonIcon() {
-  return (
-    <svg viewBox="0 0 100 75" width="68" height="51" fill="var(--parchment)" xmlns="http://www.w3.org/2000/svg">
-      <ellipse cx="60" cy="48" rx="27" ry="17"/>
-      <ellipse cx="38" cy="36" rx="17" ry="19"/>
-      <ellipse cx="18" cy="49" rx="15" ry="12"/>
-      <path d="M28,42 C34,38 42,38 44,43 L44,59 L26,59 Z"/>
-      <path d="M8,56 C6,64 13,67 19,65 L22,57 Z"/>
-      <path d="M13,38 C9,30 5,27 7,24" stroke="var(--parchment)" strokeWidth="3" strokeLinecap="round" fill="none"/>
-      <path d="M86,45 C94,41 95,49 91,53 L83,52 Z"/>
-      <rect x="27" y="61" width="6" height="13" rx="2"/>
-      <rect x="37" y="61" width="6" height="13" rx="2"/>
-      <rect x="61" y="62" width="6" height="11" rx="2"/>
-      <rect x="71" y="62" width="6" height="11" rx="2"/>
-    </svg>
-  );
-}
-
-function OklahomaStrip() {
-  return (
-    <div className="ok-strip">
-      <div className="ok-strip-inner">
-        <p className="ok-eyebrow">Oklahoma Proud</p>
-        <div className="ok-icons">
-          <div className="ok-icon">
-            <ScissortailIcon />
-            <span className="ok-icon-label">State Bird</span>
-          </div>
-          <div className="ok-icon">
-            <RedbudIcon />
-            <span className="ok-icon-label">Eastern Redbud</span>
-          </div>
-          <div className="ok-icon">
-            <PumpJackIcon />
-            <span className="ok-icon-label">Oil Country</span>
-          </div>
-          <div className="ok-icon">
-            <BisonIcon />
-            <span className="ok-icon-label">American Bison</span>
-          </div>
+      <div className="founding-band">
+        <div className="founding-inner">
+          <div className="founding-badge">Now Accepting Founding Members</div>
+          <h2 className="founding-title">Be Here From the Start</h2>
+          <p className="founding-text">
+            LocalOkies is <strong>launching soon</strong> and we're hand-selecting our first businesses.
+            Founding members will be featured prominently on launch day and recognized permanently as the
+            businesses that <strong>helped build something for OKC.</strong>
+          </p>
+          <button className="btn btn-primary" onClick={onJoin}>Submit Your Business</button>
         </div>
       </div>
+
+      <div className="about-band">
+        <div className="about-inner">
+          <h2 className="about-title">Built Right Here in OKC</h2>
+          <p className="about-text">
+            Oklahoma City has always had a <strong>stubborn, proud streak</strong> — the kind that builds a business
+            by hand and keeps it running on handshakes. LocalOkies exists to make sure those businesses are{' '}
+            <strong>easy to find and impossible to miss.</strong> This is your city. These are your neighbors.{' '}
+            <strong>Shop local.</strong>
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function DirectoryPage({ onJoin }) {
+  const pct = Math.min(100, Math.round((CONFIRMED_COUNT / FOUNDING_GOAL) * 100));
+  return (
+    <div className="soon-wrap">
+      <div className="divider" style={{width:'100%',maxWidth:480,marginBottom:'2rem'}}>
+        <div className="divider-line"/><div className="divider-mark">✦ ✦ ✦</div><div className="divider-line"/>
+      </div>
+      <h1 className="soon-title">Coming Soon</h1>
+      <p className="soon-sub">We're out talking to OKC's best small businesses right now. The directory opens once our founding members are confirmed.</p>
+      <div className="soon-count">
+        <div className="soon-stat">
+          <span className="soon-num">{CONFIRMED_COUNT}</span>
+          <span className="soon-label">Confirmed so far</span>
+        </div>
+        <div className="soon-stat">
+          <span className="soon-num">{FOUNDING_GOAL}</span>
+          <span className="soon-label">Founding member goal</span>
+        </div>
+      </div>
+      <div className="bar-wrap">
+        <div className="bar-track"><div className="bar-fill" style={{width:`${pct}%`}}/></div>
+        <div className="bar-label">{pct}% of the way to launch</div>
+      </div>
+      <button className="btn btn-primary" style={{marginTop:'2rem'}} onClick={onJoin}>Get Your Business Listed</button>
     </div>
   );
 }
 
+const CATS = ['Food & Drink','Retail','Arts & Crafts','Services','Health & Wellness','Farm & Garden','Professional Services','Other'];
+const INTERESTS = ['Free basic listing','Featured / highlighted placement','Events promotion','Newsletter feature','Social media spotlight'];
 
-function HomePage({ onGoDir }) {
-  const featured = BUSINESSES.filter(b => b.featured);
+function JoinPage() {
+  const [f, setF] = useState({ bizName:'', ownerName:'', email:'', phone:'', category:'', neighborhood:'', website:'', instagram:'', description:'', hearAbout:'', interests:[] });
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const set = e => setF(prev => ({...prev, [e.target.name]: e.target.value}));
+  const toggleInterest = opt => setF(prev => ({...prev, interests: prev.interests.includes(opt) ? prev.interests.filter(i=>i!==opt) : [...prev.interests, opt]}));
+  const ready = f.bizName && f.ownerName && f.email && f.category;
+
+  function submit(e) {
+    e.preventDefault();
+    setSubmitting(true);
+    setTimeout(() => { setSubmitting(false); setSubmitted(true); }, 900);
+  }
+
+  if (submitted) return (
+    <>
+      <div className="join-header">
+        <h1 className="join-title">Get Listed</h1>
+        <p className="join-sub">Join OKC's local business directory</p>
+      </div>
+      <div className="form-wrap">
+        <div className="success-box">
+          <div className="success-icon">🤠</div>
+          <h2 className="success-title">You're on the list!</h2>
+          <p className="success-text">Thanks, {f.ownerName.split(' ')[0]}! We received your info for <strong>{f.bizName}</strong> and we'll be in touch soon to get your listing set up. Welcome to LocalOkies.</p>
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <>
-      {/* Hero */}
-      <section className="hero">
-        <p className="hero-eyebrow">Oklahoma City, Oklahoma</p>
-        <h1 className="hero-title">
-          Local<span className="hero-title-accent">Okies</span>
-        </h1>
-        <p className="hero-tagline">
-          Handpicked small businesses from the heart of the Sooner State
-        </p>
-        <button className="hero-cta" onClick={onGoDir}>Explore the Directory</button>
-        <PrairieHorizon />
-      </section>
-
-      {/* Featured */}
-      <section className="section">
-        <div className="section-head">
-          <h2 className="section-title">Featured Businesses</h2>
-          <p className="section-sub">A few of our favorites worth knowing by name</p>
-        </div>
-        <div className="card-grid">
-          {featured.map(b => <BusinessCard key={b.id} biz={b} featured />)}
-        </div>
-      </section>
-
-      {/* Oklahoma Icons */}
-      <OklahomaStrip />
-
-      {/* About */}
-      <div className="about-band">
-        <div className="about-inner">
-          <h2 className="about-title">Why LocalOkies?</h2>
-          <p className="about-text">
-            Oklahoma City has always had a <strong>stubborn, proud streak</strong> — the kind that
-            builds a business by hand and keeps it running on handshakes. LocalOkies exists to make
-            sure those businesses are <strong>easy to find and impossible to miss.</strong> This is
-            your city. These are your neighbors. <strong>Shop local.</strong>
-          </p>
-          <div className="stats-row">
-            <div className="stat">
-              <span className="stat-num">{BUSINESSES.length}</span>
-              <span className="stat-label">Local Businesses</span>
+      <div className="join-header">
+        <h1 className="join-title">Get Listed</h1>
+        <p className="join-sub">Join OKC's local business directory — founding members welcome</p>
+      </div>
+      <div className="form-wrap">
+        <form onSubmit={submit}>
+          <div className="field-2">
+            <div><label className="label">Business Name <span>*</span></label><input className="input" name="bizName" value={f.bizName} onChange={set} placeholder="Your business name" required /></div>
+            <div><label className="label">Your Name <span>*</span></label><input className="input" name="ownerName" value={f.ownerName} onChange={set} placeholder="Owner or contact name" required /></div>
+          </div>
+          <div className="field-2">
+            <div><label className="label">Email <span>*</span></label><input className="input" type="email" name="email" value={f.email} onChange={set} placeholder="your@email.com" required /></div>
+            <div><label className="label">Phone</label><input className="input" type="tel" name="phone" value={f.phone} onChange={set} placeholder="(405) 555-0100" /></div>
+          </div>
+          <div className="field-2">
+            <div>
+              <label className="label">Category <span>*</span></label>
+              <select className="fselect" name="category" value={f.category} onChange={set} required>
+                <option value="">Select a category…</option>
+                {CATS.map(c=><option key={c} value={c}>{c}</option>)}
+              </select>
             </div>
-            <div className="stat">
-              <span className="stat-num">{CATEGORIES.length - 1}</span>
-              <span className="stat-label">Categories</span>
-            </div>
-            <div className="stat">
-              <span className="stat-num">1</span>
-              <span className="stat-label">Great City</span>
+            <div><label className="label">Neighborhood / Area</label><input className="input" name="neighborhood" value={f.neighborhood} onChange={set} placeholder="e.g. Midtown, Bricktown, Edmond" /></div>
+          </div>
+          <div className="field-2">
+            <div><label className="label">Website</label><input className="input" name="website" value={f.website} onChange={set} placeholder="yoursite.com" /></div>
+            <div><label className="label">Instagram</label><input className="input" name="instagram" value={f.instagram} onChange={set} placeholder="@yourbusiness" /></div>
+          </div>
+          <div className="field">
+            <label className="label">Tell us about your business</label>
+            <textarea className="textarea" name="description" value={f.description} onChange={set} placeholder="A sentence or two about what you do and what makes you worth knowing…" />
+          </div>
+          <div className="f-divider" />
+          <div className="field">
+            <label className="label" style={{marginBottom:'0.75rem'}}>What are you interested in?</label>
+            <div className="check-group">
+              {INTERESTS.map(opt=>(
+                <label className="check" key={opt}>
+                  <input type="checkbox" checked={f.interests.includes(opt)} onChange={()=>toggleInterest(opt)} />
+                  {opt}
+                </label>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Bottom CTA */}
-      <section className="section" style={{ textAlign: 'center' }}>
-        <Divider label="Browse the Directory" />
-        <p style={{ fontStyle: 'italic', color: 'var(--text-muted)', marginBottom: '1.5rem', fontSize: '0.95rem' }}>
-          {BUSINESSES.length} local businesses and counting
-        </p>
-        <button className="hero-cta" onClick={onGoDir}>See All Businesses</button>
-      </section>
-    </>
-  );
-}
-
-function DirectoryPage() {
-  const [search, setSearch] = useState('');
-  const [cat, setCat] = useState('All');
-
-  const filtered = BUSINESSES.filter(b => {
-    const matchCat = cat === 'All' || b.category === cat;
-    const q = search.toLowerCase();
-    const matchSearch = !q ||
-      b.name.toLowerCase().includes(q) ||
-      b.description.toLowerCase().includes(q) ||
-      b.neighborhood.toLowerCase().includes(q);
-    return matchCat && matchSearch;
-  });
-
-  return (
-    <>
-      <div className="dir-header">
-        <h1 className="dir-title">The Directory</h1>
-        <p className="dir-sub">Every last one of 'em</p>
-      </div>
-
-      <div className="dir-controls">
-        <div className="search-wrap">
-          <span className="search-icon">
-            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </span>
-          <input
-            className="search-input"
-            type="text"
-            placeholder="Search businesses, neighborhoods…"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-        </div>
-        <div className="cat-filters">
-          {CATEGORIES.map(c => (
-            <button
-              key={c}
-              className={`cat-btn${cat === c ? ' on' : ''}`}
-              onClick={() => setCat(c)}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {filtered.length > 0 && (
-        <div className="dir-count" style={{ maxWidth: '1120px', margin: '1rem auto 0', padding: '0 2rem' }}>
-          Showing {filtered.length} {filtered.length === 1 ? 'business' : 'businesses'}
-        </div>
-      )}
-
-      <div className="dir-grid">
-        {filtered.length === 0
-          ? <div className="dir-empty">No businesses match your search. Try broadening your filter.</div>
-          : filtered.map(b => <BusinessCard key={b.id} biz={b} />)
-        }
+          <div className="field">
+            <label className="label">How did you hear about LocalOkies?</label>
+            <input className="input" name="hearAbout" value={f.hearAbout} onChange={set} placeholder="Word of mouth, social media, a phone call…" />
+          </div>
+          <button className="btn btn-primary" type="submit" disabled={!ready||submitting} style={{opacity:(!ready||submitting)?0.5:1,cursor:(!ready||submitting)?'default':'pointer'}}>
+            {submitting ? 'Sending…' : 'Submit Your Business'}
+          </button>
+          <p className="form-note">* Required fields. Submitting this form doesn't automatically publish your listing — we'll reach out to confirm details and get you set up properly.</p>
+        </form>
       </div>
     </>
   );
 }
 
-/* ─────────────────────────────────────────────
-   APP SHELL
-───────────────────────────────────────────── */
 function App() {
   const [page, setPage] = useState('home');
-
+  useEffect(() => { window.scrollTo(0,0); }, [page]);
   return (
     <>
       <nav className="nav">
-        <div className="nav-brand" onClick={() => setPage('home')}>
+        <div className="nav-brand" onClick={()=>setPage('home')}>
           <span className="nav-brand-main">LocalOkies</span>
           <span className="nav-brand-sub">OKC Small Business</span>
         </div>
         <div className="nav-links">
-          <button className={`nav-btn${page === 'home' ? ' active' : ''}`} onClick={() => setPage('home')}>Home</button>
-          <button className={`nav-btn${page === 'directory' ? ' active' : ''}`} onClick={() => setPage('directory')}>Directory</button>
+          <button className={`nav-btn${page==='home'?' active':''}`} onClick={()=>setPage('home')}>Home</button>
+          <button className={`nav-btn${page==='directory'?' active':''}`} onClick={()=>setPage('directory')}>Directory</button>
+          <button className={`nav-btn${page==='join'?' active':''}`} onClick={()=>setPage('join')}>Get Listed</button>
         </div>
       </nav>
-
       <main>
-        {page === 'home'
-          ? <HomePage onGoDir={() => setPage('directory')} />
-          : <DirectoryPage />
-        }
+        {page==='home' && <HomePage onJoin={()=>setPage('join')} onDirectory={()=>setPage('directory')} />}
+        {page==='directory' && <DirectoryPage onJoin={()=>setPage('join')} />}
+        {page==='join' && <JoinPage />}
       </main>
-
       <footer className="footer">
         <div className="footer-name">LocalOkies</div>
-        <div className="footer-sub">Celebrating Oklahoma City's small businesses &nbsp;·&nbsp; Built with Oklahoma pride</div>
+        <div className="footer-sub">Celebrating Oklahoma City's small businesses · Built with Oklahoma pride</div>
       </footer>
     </>
   );
