@@ -135,6 +135,18 @@
     .success-title { font-family: 'Rye', serif; font-size: 1.4rem; color: var(--teal); margin-bottom: 0.75rem; }
     .success-text { font-style: italic; color: var(--text-muted); font-size: 0.92rem; line-height: 1.7; }
 
+    .founding-member-section { background: var(--cream); padding: 4rem 2rem; border-top: 1px solid var(--border); }
+    .member-card { background: var(--parchment); border: 1px solid var(--border-strong); padding: 2.25rem 2rem 2rem; position: relative; max-width: 760px; margin: 0 auto; }
+    .member-card::before { content: ""; position: absolute; inset: 6px; border: 1px solid var(--border); pointer-events: none; opacity: 0.4; }
+    .member-badge { display: inline-block; background: var(--teal); color: var(--parchment); font-family: "Source Sans 3", sans-serif; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 0.28rem 0.75rem; margin-bottom: 1.1rem; }
+    .member-name { font-family: "Rye", serif; font-size: 1.5rem; color: var(--crimson); margin-bottom: 0.3rem; }
+    .member-cat { font-family: "Source Sans 3", sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 1rem; }
+    .member-desc { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); font-style: italic; margin-bottom: 1.25rem; }
+    .member-highlight { background: var(--amber); color: var(--crimson); font-family: "Source Sans 3", sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; padding: 0.45rem 1rem; display: inline-block; margin-bottom: 1.25rem; }
+    .member-meta { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .member-meta-item { font-family: "Source Sans 3", sans-serif; font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; }
+    .member-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); opacity: 0.5; flex-shrink: 0; }
+
     .footer { background: var(--teal); border-top: 3px solid var(--amber); padding: 2.5rem 2rem; text-align: center; }
     .footer-name { font-family: 'Rye', serif; font-size: 1.25rem; color: var(--amber); margin-bottom: 0.4rem; }
     .footer-sub { font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(243,228,196,0.32); }
@@ -157,7 +169,19 @@
 const { useState, useEffect } = React;
 
 const FOUNDING_GOAL = 20;
-const CONFIRMED_COUNT = 0;
+const CONFIRMED_COUNT = 1;
+
+const FOUNDING_MEMBERS = [
+  {
+    id: 1,
+    name: "My Holy Crescendo",
+    category: "Women's Formation",
+    description: "A Catholic women's formation program designed to help women come to a deeper understanding of the beauty God created in them — body, mind, and spirit. Know yourself better, live that self more intentionally, and love yourself more fully in the ways God already does.",
+    neighborhood: "North OKC / Virtual",
+    website: "myholycrescendo.com",
+    highlight: "Next cohort opening July 2026 for fall enrollment",
+  },
+];
 
 function ScissortailIcon() {
   return <svg viewBox="0 0 60 100" width="32" height="54" fill="rgba(243,228,196,0.85)"><circle cx="30" cy="11" r="8"/><ellipse cx="30" cy="27" rx="10" ry="11"/><path d="M20,22 C8,19 4,30 10,33 L22,29 Z"/><path d="M40,22 C52,19 56,30 50,33 L38,29 Z"/><path d="M23,37 L37,37 L38,51 L22,51 Z"/><path d="M22,51 C20,60 15,75 12,97 L17,98 C21,75 25,61 28,51 Z"/><path d="M38,51 C40,60 45,75 48,97 L43,98 C39,75 35,61 32,51 Z"/></svg>;
@@ -213,6 +237,22 @@ function PrairieHorizon() {
   );
 }
 
+function FoundingMemberCard({ biz }) {
+  return (
+    <div className="member-card">
+      <div className="member-badge">✦ Founding Member #1</div>
+      <div className="member-name">{biz.name}</div>
+      <div className="member-cat">{biz.category}</div>
+      <div className="member-desc">{biz.description}</div>
+      {biz.highlight && <div className="member-highlight">⟡ {biz.highlight}</div>}
+      <div className="member-meta">
+        <div className="member-meta-item"><div className="member-dot"/>{biz.neighborhood}</div>
+        {biz.website && <div className="member-meta-item"><div className="member-dot"/>{biz.website}</div>}
+      </div>
+    </div>
+  );
+}
+
 function HomePage({ onJoin, onDirectory }) {
   return (
     <>
@@ -265,6 +305,16 @@ function HomePage({ onJoin, onDirectory }) {
         </div>
       </div>
 
+      <div className="founding-member-section">
+        <div style={{maxWidth:"760px",margin:"0 auto"}}>
+          <div className="section-head" style={{textAlign:"center",marginBottom:"2rem"}}>
+            <h2 className="section-title">Our First Founding Member</h2>
+            <p className="section-sub">Meet the business that started it all</p>
+          </div>
+          <FoundingMemberCard biz={FOUNDING_MEMBERS[0]} />
+        </div>
+      </div>
+
       <div className="about-band">
         <div className="about-inner">
           <h2 className="about-title">Built Right Here in OKC</h2>
@@ -283,6 +333,7 @@ function HomePage({ onJoin, onDirectory }) {
 function DirectoryPage({ onJoin }) {
   const pct = Math.min(100, Math.round((CONFIRMED_COUNT / FOUNDING_GOAL) * 100));
   return (
+    <>
     <div className="soon-wrap">
       <div className="divider" style={{width:'100%',maxWidth:480,marginBottom:'2rem'}}>
         <div className="divider-line"/><div className="divider-mark">✦ ✦ ✦</div><div className="divider-line"/>
@@ -305,6 +356,15 @@ function DirectoryPage({ onJoin }) {
       </div>
       <button className="btn btn-primary" style={{marginTop:'2rem'}} onClick={onJoin}>Get Your Business Listed</button>
     </div>
+    {FOUNDING_MEMBERS.length > 0 && (
+      <div style={{width:'100%',maxWidth:'800px',padding:'0 2rem 4rem'}}>
+        <div className="divider" style={{margin:'3rem 0 2rem'}}>
+          <div className="divider-line"/><div className="divider-mark">Confirmed Founding Members</div><div className="divider-line"/>
+        </div>
+        {FOUNDING_MEMBERS.map(biz => <FoundingMemberCard key={biz.id} biz={biz} />)}
+      </div>
+    )}
+    </>
   );
 }
 
