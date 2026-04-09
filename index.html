@@ -320,10 +320,22 @@ function JoinPage() {
   const toggleInterest = opt => setF(prev => ({...prev, interests: prev.interests.includes(opt) ? prev.interests.filter(i=>i!==opt) : [...prev.interests, opt]}));
   const ready = f.bizName && f.ownerName && f.email && f.category;
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
     setSubmitting(true);
-    setTimeout(() => { setSubmitting(false); setSubmitted(true); }, 900);
+    try {
+      const res = await fetch("https://formspree.io/f/xykbqgjg", {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ businessName:f.bizName, ownerName:f.ownerName, email:f.email, phone:f.phone, category:f.category, neighborhood:f.neighborhood, website:f.website, instagram:f.instagram, description:f.description, interests:f.interests.join(", "), hearAbout:f.hearAbout }),
+      });
+      if (res.ok) { setSubmitted(true); }
+      else { alert("Something went wrong — please try again or email us directly."); }
+    } catch(err) {
+      alert("Submission failed — check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) return (
