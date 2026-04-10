@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LocalOkies — Oklahoma City Small Business Directory</title>
+  <title>LocalOkie — Oklahoma City Small Business Directory</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Rye&family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -159,15 +159,15 @@
     .dollar-block-chain { background: var(--crimson); }
     .dollar-vs { background: var(--dark-mid); color: var(--amber); font-family: 'Rye', serif; font-size: 1.1rem; padding: 1rem 0.75rem; display: flex; align-items: center; justify-content: center; min-width: 56px; }
     .dollar-amount { font-family: 'Rye', serif; font-size: 3.5rem; color: var(--amber); line-height: 1; margin-bottom: 0.25rem; }
-    .dollar-label { font-family: 'Source Sans 3', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(243,228,196,0.75); margin-bottom: 0.6rem; }
-    .dollar-context { font-size: 0.82rem; font-style: italic; color: rgba(243,228,196,0.55); line-height: 1.6; }
+    .dollar-label { font-family: 'Source Sans 3', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 0.6rem; }
+    .dollar-context { font-size: 0.82rem; font-style: italic; color: rgba(255,255,255,0.75); line-height: 1.6; }
     .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
     .stat-card { background: rgba(243,228,196,0.06); border: 1px solid rgba(243,228,196,0.12); padding: 1.75rem 1.5rem; position: relative; transition: background 0.2s; }
     .stat-card:hover { background: rgba(243,228,196,0.1); }
     .stat-card::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(243,228,196,0.06); pointer-events: none; }
     .stat-num { font-family: 'Rye', serif; font-size: 2.4rem; color: var(--amber); line-height: 1; margin-bottom: 0.5rem; }
     .stat-headline { font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--parchment); margin-bottom: 0.6rem; }
-    .stat-detail { font-size: 0.85rem; line-height: 1.75; color: rgba(243,228,196,0.55); font-style: italic; }
+    .stat-detail { font-size: 0.85rem; line-height: 1.75; color: rgba(255,255,255,0.7); font-style: italic; }
     .shoplocal-cta-text { font-size: 1rem; color: rgba(243,228,196,0.7); font-style: italic; max-width: 560px; margin: 0 auto 1.75rem; line-height: 1.75; text-align: center; }
     .shoplocal-cta-text strong { color: var(--parchment); font-style: normal; }
     .footer { background: var(--teal); border-top: 3px solid var(--amber); padding: 2.5rem 2rem; text-align: center; }
@@ -352,7 +352,7 @@ function HomePage({ onJoin, onDirectory }) {
     <>
       <section className="hero">
         <p className="hero-eyebrow">Oklahoma City, Oklahoma</p>
-        <h1 className="hero-title">Local<span className="hero-title-accent">Okies</span></h1>
+        <h1 className="hero-title">Local<span className="hero-title-accent">Okie</span></h1>
         <p className="hero-tagline">A new home for OKC's small businesses — launching soon</p>
         <div className="cta-row">
           <button className="btn btn-primary" onClick={onJoin}>Get Your Business Listed</button>
@@ -363,17 +363,17 @@ function HomePage({ onJoin, onDirectory }) {
 
       <section className="section">
         <div className="section-head">
-          <h2 className="section-title">Why LocalOkies?</h2>
+          <h2 className="section-title">Why LocalOkie?</h2>
           <p className="section-sub">Built for business owners who've earned their place in this city</p>
         </div>
         <div className="benefit-grid">
           {[
             ["01","Your Own Profile","A dedicated listing page with your story, hours, location, and everything a customer needs to find and choose you."],
-            ["02","OKC Shoppers First","LocalOkies is built for people who are already looking to shop local. Every visitor wants to support a business like yours."],
+            ["02","OKC Shoppers First","LocalOkie is built for people who are already looking to shop local. Every visitor wants to support a business like yours."],
             ["03","Community, Not Algorithm","No bidding for placement. No ads pushing you down. A clean, beautiful directory your neighbors can actually use."],
-            ["04","Founding Member Status","The first businesses to join shape what LocalOkies becomes. Founding members get permanent recognition and first access to new features."],
+            ["04","Founding Member Status","The first businesses to join shape what LocalOkie becomes. Founding members get permanent recognition and first access to new features."],
             ["05","Free to Start","Basic listings are free. We're building this alongside you — not charging you before we've earned it."],
-            ["06","Made in Oklahoma","LocalOkies is run by OKC locals. We're not a national directory. We're your neighbors, and we're proud of this city."],
+            ["06","Made in Oklahoma","LocalOkie is run by OKC locals. We're not a national directory. We're your neighbors, and we're proud of this city."],
           ].map(([num,title,desc]) => (
             <div className="benefit-card" key={num}>
               <div className="benefit-num">{num}</div>
@@ -391,7 +391,7 @@ function HomePage({ onJoin, onDirectory }) {
           <div className="founding-badge">Now Accepting Founding Members</div>
           <h2 className="founding-title">Be Here From the Start</h2>
           <p className="founding-text">
-            LocalOkies is <strong>launching soon</strong> and we're hand-selecting our first businesses.
+            LocalOkie is <strong>launching soon</strong> and we're hand-selecting our first businesses.
             Founding members will be featured prominently on launch day and recognized permanently as the
             businesses that <strong>helped build something for OKC.</strong>
           </p>
@@ -416,7 +416,7 @@ function HomePage({ onJoin, onDirectory }) {
           <h2 className="about-title">Built Right Here in OKC</h2>
           <p className="about-text">
             Oklahoma City has always had a <strong>stubborn, proud streak</strong> — the kind that builds a business
-            by hand and keeps it running on handshakes. LocalOkies exists to make sure those businesses are{' '}
+            by hand and keeps it running on handshakes. LocalOkie exists to make sure those businesses are{' '}
             <strong>easy to find and impossible to miss.</strong> This is your city. These are your neighbors.{' '}
             <strong>Shop local.</strong>
           </p>
@@ -504,7 +504,7 @@ function JoinPage() {
         <div className="success-box">
           <div className="success-icon">🤠</div>
           <h2 className="success-title">You're on the list!</h2>
-          <p className="success-text">Thanks, {f.ownerName.split(' ')[0]}! We received your info for <strong>{f.bizName}</strong> and we'll be in touch soon to get your listing set up. Welcome to LocalOkies.</p>
+          <p className="success-text">Thanks, {f.ownerName.split(' ')[0]}! We received your info for <strong>{f.bizName}</strong> and we'll be in touch soon to get your listing set up. Welcome to LocalOkie.</p>
         </div>
       </div>
     </>
@@ -557,7 +557,7 @@ function JoinPage() {
             </div>
           </div>
           <div className="field">
-            <label className="label">How did you hear about LocalOkies?</label>
+            <label className="label">How did you hear about LocalOkie?</label>
             <input className="input" name="hearAbout" value={f.hearAbout} onChange={set} placeholder="Word of mouth, social media, a phone call…" />
           </div>
           <button className="btn btn-primary" type="submit" disabled={!ready||submitting} style={{opacity:(!ready||submitting)?0.5:1,cursor:(!ready||submitting)?'default':'pointer'}}>
@@ -577,7 +577,7 @@ function App() {
     <>
       <nav className="nav">
         <div className="nav-brand" onClick={()=>setPage('home')}>
-          <span className="nav-brand-main">LocalOkies</span>
+          <span className="nav-brand-main">LocalOkie</span>
           <span className="nav-brand-sub">OKC Small Business</span>
         </div>
         <div className="nav-links">
@@ -592,7 +592,7 @@ function App() {
         {page==='join' && <JoinPage />}
       </main>
       <footer className="footer">
-        <div className="footer-name">LocalOkies</div>
+        <div className="footer-name">LocalOkie</div>
         <div className="footer-sub">Celebrating Oklahoma City's small businesses · Built with Oklahoma pride</div>
       </footer>
     </>
