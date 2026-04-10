@@ -147,6 +147,29 @@
     .member-meta-item { font-family: "Source Sans 3", sans-serif; font-size: 0.75rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; }
     .member-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); opacity: 0.5; flex-shrink: 0; }
 
+    .shoplocal-band { background: var(--dark); padding: 5rem 2rem; }
+    .shoplocal-inner { max-width: 1080px; margin: 0 auto; }
+    .shoplocal-head { text-align: center; margin-bottom: 3.5rem; }
+    .shoplocal-eyebrow { font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: var(--amber); opacity: 0.8; margin-bottom: 0.85rem; }
+    .shoplocal-title { font-family: 'Rye', serif; font-size: 2rem; color: var(--parchment); margin-bottom: 0.75rem; text-shadow: 2px 3px 0 rgba(0,0,0,0.3); }
+    .shoplocal-sub { font-style: italic; color: rgba(243,228,196,0.6); font-size: 1rem; max-width: 520px; margin: 0 auto; line-height: 1.7; }
+    .dollar-visual { display: flex; align-items: stretch; justify-content: center; gap: 0; margin: 0 0 3.5rem; flex-wrap: wrap; }
+    .dollar-block { padding: 2rem 1.5rem; flex: 1; min-width: 200px; max-width: 320px; text-align: center; }
+    .dollar-block-local { background: var(--teal); }
+    .dollar-block-chain { background: var(--crimson); }
+    .dollar-vs { background: var(--dark-mid); color: var(--amber); font-family: 'Rye', serif; font-size: 1.1rem; padding: 1rem 0.75rem; display: flex; align-items: center; justify-content: center; min-width: 56px; }
+    .dollar-amount { font-family: 'Rye', serif; font-size: 3.5rem; color: var(--amber); line-height: 1; margin-bottom: 0.25rem; }
+    .dollar-label { font-family: 'Source Sans 3', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(243,228,196,0.75); margin-bottom: 0.6rem; }
+    .dollar-context { font-size: 0.82rem; font-style: italic; color: rgba(243,228,196,0.55); line-height: 1.6; }
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.25rem; margin-bottom: 3rem; }
+    .stat-card { background: rgba(243,228,196,0.06); border: 1px solid rgba(243,228,196,0.12); padding: 1.75rem 1.5rem; position: relative; transition: background 0.2s; }
+    .stat-card:hover { background: rgba(243,228,196,0.1); }
+    .stat-card::before { content: ''; position: absolute; inset: 5px; border: 1px solid rgba(243,228,196,0.06); pointer-events: none; }
+    .stat-num { font-family: 'Rye', serif; font-size: 2.4rem; color: var(--amber); line-height: 1; margin-bottom: 0.5rem; }
+    .stat-headline { font-family: 'Source Sans 3', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--parchment); margin-bottom: 0.6rem; }
+    .stat-detail { font-size: 0.85rem; line-height: 1.75; color: rgba(243,228,196,0.55); font-style: italic; }
+    .shoplocal-cta-text { font-size: 1rem; color: rgba(243,228,196,0.7); font-style: italic; max-width: 560px; margin: 0 auto 1.75rem; line-height: 1.75; text-align: center; }
+    .shoplocal-cta-text strong { color: var(--parchment); font-style: normal; }
     .footer { background: var(--teal); border-top: 3px solid var(--amber); padding: 2.5rem 2rem; text-align: center; }
     .footer-name { font-family: 'Rye', serif; font-size: 1.25rem; color: var(--amber); margin-bottom: 0.4rem; }
     .footer-sub { font-family: 'Source Sans 3', sans-serif; font-size: 0.7rem; letter-spacing: 0.1em; color: rgba(243,228,196,0.32); }
@@ -253,6 +276,77 @@ function FoundingMemberCard({ biz }) {
   );
 }
 
+function ShopLocalSection({ onJoin }) {
+  const stats = [
+    {
+      num: "3x",
+      headline: "More money stays in OKC",
+      detail: "Local independent businesses recirculate 52% of every dollar back into the local economy. Chain stores return less than 14%.",
+    },
+    {
+      num: "$45",
+      headline: "Generated locally per $100 spent",
+      detail: "Every $100 at a local business generates $45 of additional local economic activity. The same $100 at a big-box chain generates just $14.",
+    },
+    {
+      num: "55%",
+      headline: "Of new jobs come from small business",
+      detail: "Small businesses contributed 55% of total net job creation in the US from 2013 to 2023, according to the Bureau of Labor Statistics.",
+    },
+    {
+      num: "10%",
+      headline: "Is all it takes to change everything",
+      detail: "Shifting just 10% of consumer spending from national chains to local businesses could create thousands of jobs and millions in new local wealth.",
+    },
+  ];
+
+  return (
+    <div className="shoplocal-band">
+      <div className="shoplocal-inner">
+        <div className="shoplocal-head">
+          <p className="shoplocal-eyebrow">Why It Matters</p>
+          <h2 className="shoplocal-title">Where Does Your Dollar Go?</h2>
+          <p className="shoplocal-sub">
+            Every purchase is a vote. When you spend local, your money doesn't disappear into a corporate headquarters in another state — it stays right here, feeding families, funding neighbors, and building the city you actually want to live in.
+          </p>
+        </div>
+
+        <div className="dollar-visual">
+          <div className="dollar-block dollar-block-local">
+            <div className="dollar-label">Spent at a local business</div>
+            <div className="dollar-amount">$45</div>
+            <div className="dollar-context">stays in OKC — paying local wages, local suppliers, and local owners who live here too</div>
+          </div>
+          <div className="dollar-vs">vs</div>
+          <div className="dollar-block dollar-block-chain">
+            <div className="dollar-label">Spent at a chain or online</div>
+            <div className="dollar-amount">$14</div>
+            <div className="dollar-context">stays here — the rest leaves OKC immediately, headed to a corporate office somewhere else</div>
+          </div>
+        </div>
+
+        <div className="stat-grid">
+          {stats.map((s, i) => (
+            <div className="stat-card" key={i}>
+              <div className="stat-num">{s.num}</div>
+              <div className="stat-headline">{s.headline}</div>
+              <div className="stat-detail">{s.detail}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{textAlign:'center'}}>
+          <p className="shoplocal-cta-text">
+            <strong>75% of people feel sad, worried, or angry when a local shop closes.</strong>{' '}
+            Yet most of us never connect our daily spending choices to that moment. LocalOkie exists to make the connection easy — so shopping local becomes the path of least resistance, not the heroic exception.
+          </p>
+          <button className="btn btn-primary" onClick={onJoin}>Get Your Business Listed</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HomePage({ onJoin, onDirectory }) {
   return (
     <>
@@ -314,6 +408,8 @@ function HomePage({ onJoin, onDirectory }) {
           <FoundingMemberCard biz={FOUNDING_MEMBERS[0]} />
         </div>
       </div>
+
+      <ShopLocalSection onJoin={onJoin} />
 
       <div className="about-band">
         <div className="about-inner">
